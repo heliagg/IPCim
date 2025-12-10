@@ -18,6 +18,28 @@ namespace IPCim
             LoadEntries();
         }
 
+        private void Bevitel_Click(object sender, RoutedEventArgs e)
+        {
+            var domain = DomainInput.Text.Trim();
+            var ip = IpInput.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(domain) || string.IsNullOrWhiteSpace(ip))
+            {
+                MessageBox.Show("Mindkét mező kitöltése szükséges.", "Figyelmeztetés",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            Entries.Add(new HostEntry
+            {
+                DomainName = domain,
+                IpAddress = ip
+            });
+
+            DomainInput.Clear();
+            IpInput.Clear();
+        }
+
         private void LoadEntries()
         {
             var filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "csudh.txt");
