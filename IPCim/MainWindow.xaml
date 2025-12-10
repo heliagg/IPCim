@@ -36,7 +36,9 @@
                     Width="80"
                     Margin="0,0,0,10"
                     Click="Bevitel_Click" />
-            <Button Content="Mentés" Width="80" />
+            <Button Content="Mentés"
+                    Width="80"
+                    Click="Mentes_Click" />
         </StackPanel>
     </Grid>
 </Window>

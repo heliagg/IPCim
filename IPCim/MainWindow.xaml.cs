@@ -1,5 +1,8 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 using System.Windows;
 
 namespace IPCim
@@ -38,6 +41,23 @@ namespace IPCim
 
             DomainInput.Clear();
             IpInput.Clear();
+        }
+
+        private void Mentes_Click(object sender, RoutedEventArgs e)
+        {
+            var filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "csudh.txt");
+
+            try
+            {
+                var lines = new List<string> { "domain-name;ip-address" };
+                lines.AddRange(Entries.Select(entry => $"{entry.DomainName};{entry.IpAddress}"));
+                File.WriteAllLines(filePath, lines);
+                MessageBox.Show("Mentve.", "Kész", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Mentési hiba: {ex.Message}", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void LoadEntries()
