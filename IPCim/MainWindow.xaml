@@ -12,9 +12,12 @@
             <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
 
-        <DataGrid Grid.Column="0"
+        <DataGrid x:Name="IpGrid"
+                  Grid.Column="0"
                   AutoGenerateColumns="False"
                   HeadersVisibility="Column"
+                  IsReadOnly="True"
+                  ItemsSource="{Binding Entries}"
                   Margin="0,0,10,0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="domainname" Binding="{Binding DomainName}" />
